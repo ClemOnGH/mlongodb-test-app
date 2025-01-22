@@ -1,7 +1,7 @@
 <% data.forEach((el) => { %>
 <div class="container">
     <p><%= el.name %></p>
-    <a href="/remove-ship/<%= el._id%>"
+    <a href="/ships/remove/<%= el._id%>"
         ><div class="remove">
             <svg viewBox="0 0 384 512">
                 <path
@@ -10,7 +10,7 @@
             </svg>
         </div>
     </a>
-    <a href="/edit-ship/<%= el._id%>"
+    <a href="/ships/edit/<%= el._id%>"
         ><div class="edit">
             <svg viewBox="0 0 512 512">
                 <path

@@ -1,6 +1,6 @@
 <div id="container">
     <div id="form">
-        <form action="/edit-ship" method="patch">
+        <form action="/ships/edit/<%= data.id %>" method="patch">
             <fieldset>
                 <legend>Informations</legend>
                 <div class="form-group">
@@ -82,23 +82,42 @@
                     <input type="checkbox" name="commercial" id="commercial" />
                 </div>
             </fieldset>
+            <input type="submit" />
         </form>
     </div>
     <div id="changes">
         <fieldset>
             <legend>Changements</legend>
             <p>Nom: <span class="previous"><%= !data.name ? "N/A" : data.name %></span>→<span class="current"></span></p>
-            <p>Manufactureur: <span class="previous"><%= !data.manufacturer ? "N/A" : data.manufacturer %></span>→<span class="current"></span></p>
-            <p>Description: <span class="previous"><%= !data.description ? "N/A" : data.description %></span>→<span class="current"></span></p>
+            <p>
+                Manufactureur: <span class="previous"><%= !data.manufacturer ? "N/A" : data.manufacturer %></span>→<span
+                    class="current"
+                ></span>
+            </p>
+            <p>
+                Description: <span class="previous"><%= !data.description ? "N/A" : data.description %></span>→<span class="current"></span>
+            </p>
             <p>Taille: <span class="previous"><%= !data.size ? "N/A" : data.size %></span>→<span class="current"></span></p>
             <p>Sièges: <span class="previous"><%= !data.seats ? "N/A" : data.seats %></span>→<span class="current"></span></p>
             <p>Prix: <span class="previous"><%= !data.cost ? "N/A" : data.cost %></span>→<span class="current"></span></p>
             <p>Image: <span class="previous"><%= !data.image ? "N/A" : data.image %></span>→<span class="current"></span></p>
             <p>Vitesse: <span class="previous"><%= !data.speed ? "N/A" : data.speed %></span>→<span class="current"></span></p>
-            <p>Vitesse de boost: <span class="previous"><%= !data.boost_speed ? "N/A" : data.boost_speed %></span>→<span class="current"></span></p>
+            <p>
+                Vitesse de boost: <span class="previous"><%= !data.boost_speed ? "N/A" : data.boost_speed %></span>→<span
+                    class="current"
+                ></span>
+            </p>
             <p>Maniabilité: <span class="previous"><%= !data.agility ? "N/A" : data.agility %></span>→<span class="current"></span></p>
-            <p>Bouclier de base: <span class="previous"><%= !data.base_shield ? "N/A" : data.base_shield %></span>→<span class="current"></span></p>
-            <p>Armure de base: <span class="previous"><%= !data.base_armour ? "N/A" : data.base_armour %></span>→<span class="current"></span></p>
+            <p>
+                Bouclier de base: <span class="previous"><%= !data.base_shield ? "N/A" : data.base_shield %></span>→<span
+                    class="current"
+                ></span>
+            </p>
+            <p>
+                Armure de base: <span class="previous"><%= !data.base_armour ? "N/A" : data.base_armour %></span>→<span
+                    class="current"
+                ></span>
+            </p>
             <p>Poids: <span class="previous"><%= !data.mass ? "N/A" : data.mass %></span>→<span class="current"></span></p>
             <fieldset class="fieldset-checkboxes">
                 <legend>Usages du vaisseau</legend>
