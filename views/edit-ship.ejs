@@ -1,0 +1,132 @@
+<div id="container">
+    <div id="form">
+        <form action="/edit-ship" method="patch">
+            <fieldset>
+                <legend>Informations</legend>
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" name="name" id="name" />
+                </div>
+                <div class="form-group">
+                    <label for="manufacturer">Manufactureur</label>
+                    <input type="text" name="manufacturer" id="manufacturer" />
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="textarea" name="description" id="description" />
+                </div>
+                <div class="form-group">
+                    <label for="size">Taille</label>
+                    <select id="size" name="size">
+                        <option value="small">Petit</option>
+                        <option value="medium">Moyen</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seats">Nombre de sièges</label>
+                    <input type="number" name="seats" id="seats" min="1" />
+                </div>
+                <div class="form-group">
+                    <label for="cost">Prix</label>
+                    <input type="number" name="cost" id="cost" min="0" />
+                </div>
+                <div class="form-group"><label for="image">Image</label> <input type="text" name="image" id="image" /></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Statistiques</legend>
+                <div class="form-group">
+                    <label for="speed">Vitesse</label>
+                    <input type="number" name="speed" id="speed" />
+                </div>
+                <div class="form-group">
+                    <label for="boost_speed">Vitesse de boost</label>
+                    <input type="number" name="boost_speed" id="boost_speed" />
+                </div>
+                <div class="form-group">
+                    <label for="agility">Maniabilité</label>
+                    <input type="number" name="agility" id="agility" />
+                </div>
+                <div class="form-group">
+                    <label for="base_shield">Bouclier de base</label>
+                    <input type="number" name="base_shield" id="base_shield" />
+                </div>
+                <div class="form-group">
+                    <label for="base_armour">Armure de base</label>
+                    <input type="number" name="base_armour" id="base_armour" />
+                </div>
+                <div class="form-group">
+                    <label for="mass">Poids</label>
+                    <input type="number" name="mass" id="mass" />
+                </div>
+            </fieldset>
+
+            <fieldset class="fieldset-checkboxes">
+                <legend>Usages du vaisseau</legend>
+
+                <div class="form-checkboxes">
+                    <label for="exploration">Exploration</label>
+                    <input type="checkbox" name="exploration" id="exploration" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="combat">Combat</label>
+                    <input type="checkbox" name="combat" id="combat" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="fret">Fret</label>
+                    <input type="checkbox" name="fret" id="fret" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="commercial">Commercial</label>
+                    <input type="checkbox" name="commercial" id="commercial" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div id="changes">
+        <fieldset>
+            <legend>Changements</legend>
+            <p>Nom: <span class="previous"><%= !data.name ? "N/A" : data.name %></span>→<span class="current"></span></p>
+            <p>Manufactureur: <span class="previous"><%= !data.manufacturer ? "N/A" : data.manufacturer %></span>→<span class="current"></span></p>
+            <p>Description: <span class="previous"><%= !data.description ? "N/A" : data.description %></span>→<span class="current"></span></p>
+            <p>Taille: <span class="previous"><%= !data.size ? "N/A" : data.size %></span>→<span class="current"></span></p>
+            <p>Sièges: <span class="previous"><%= !data.seats ? "N/A" : data.seats %></span>→<span class="current"></span></p>
+            <p>Prix: <span class="previous"><%= !data.cost ? "N/A" : data.cost %></span>→<span class="current"></span></p>
+            <p>Image: <span class="previous"><%= !data.image ? "N/A" : data.image %></span>→<span class="current"></span></p>
+            <p>Vitesse: <span class="previous"><%= !data.speed ? "N/A" : data.speed %></span>→<span class="current"></span></p>
+            <p>Vitesse de boost: <span class="previous"><%= !data.boost_speed ? "N/A" : data.boost_speed %></span>→<span class="current"></span></p>
+            <p>Maniabilité: <span class="previous"><%= !data.agility ? "N/A" : data.agility %></span>→<span class="current"></span></p>
+            <p>Bouclier de base: <span class="previous"><%= !data.base_shield ? "N/A" : data.base_shield %></span>→<span class="current"></span></p>
+            <p>Armure de base: <span class="previous"><%= !data.base_armour ? "N/A" : data.base_armour %></span>→<span class="current"></span></p>
+            <p>Poids: <span class="previous"><%= !data.mass ? "N/A" : data.mass %></span>→<span class="current"></span></p>
+            <fieldset class="fieldset-checkboxes">
+                <legend>Usages du vaisseau</legend>
+                <div class="form-checkboxes">
+                    <label for="cexploration">Exploration</label>
+                    <input type="checkbox" name="cexploration" <%= data.use.includes('exploration') ? "checked" : null%>/>
+                    <p>→</p>
+                    <input type="checkbox" name="cexploration" id="cexploration" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="ccombat">Combat</label>
+                    <input type="checkbox" name="ccombat" <%= data.use.includes('combat') ? "checked" : null%>/>
+                    <p>→</p>
+                    <input type="checkbox" name="ccombat" id="ccombat" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="cfret">Fret</label>
+                    <input type="checkbox" name="cfret" <%= data.use.includes('fret') ? "checked" : null%>/>
+                    <p>→</p>
+                    <input type="checkbox" name="cfret" id="cfret" />
+                </div>
+                <div class="form-checkboxes">
+                    <label for="ccommercial">Commercial</label>
+                    <input type="checkbox" name="ccommercial" <%= data.use.includes('commercial') ? "checked" : null%>/>
+                    <p>→</p>
+                    <input type="checkbox" name="ccommercial" id="ccommercial" />
+                </div>
+            </fieldset>
+        </fieldset>
+    </div>
+</div>

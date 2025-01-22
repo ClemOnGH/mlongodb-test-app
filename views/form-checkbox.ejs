@@ -1,0 +1,26 @@
+<script>
+    const checkboxes = document.querySelectorAll('#changes .form-checkboxes');
+    const formCheckboxes = document.querySelectorAll('form .form-checkboxes');
+    const formInputs = document.querySelectorAll('form input:not(input[type=checkbox])');
+    checkboxes.forEach((d) => {
+        d.addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+        d.addEventListener('mousemove', (e) => {
+            e.preventDefault();
+        });
+    });
+
+    formCheckboxes.forEach((d) => {
+        d.addEventListener('change', (e) => {
+            document.getElementById('c' + e.target.id).checked = e.target.checked;
+        });
+    });
+
+    formInputs.forEach((d) => {
+        d.addEventListener('keydown', (e) => {
+            console.log(e.target.id);
+            document.getElementById(e.target.id);
+        });
+    });
+</script>
