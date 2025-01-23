@@ -4,9 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= title %></title>
-        <% if(css) { %> <% css.forEach((file) => { %>
-        <link rel="stylesheet" href="<% css.file %>" />
-        <% })%> <% } %>
+        <% if(css) {css.forEach((file) => { %>
+        <link rel="stylesheet" href="<%= file.file %>" />
+        <% })} %>
     </head>
     <body>
         <% body.forEach((el) => {%> <%- include(el.file, {data: el.data}) %> <% }) %>

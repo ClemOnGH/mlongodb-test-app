@@ -1,0 +1,52 @@
+<script>
+    const form = document.getElementsByTagName('form')[0];
+    const passwordValidation = document.getElementById('password-validation');
+    const password = document.getElementById('password');
+    const submit = document.getElementById('register-submit');
+    const formUl = document.getElementsByTagName('ul')[0];
+    const formLis = document.querySelectorAll('ul li');
+
+    let issues = [];
+
+    document.body.onkeyup = (e) => {
+        console.log(issues);
+        if (issues.includes('mismatching_passwords')) {
+            formLis[0].removeAttribute('hidden');
+            formUl.removeAttribute('hidden');
+        } else if (issues.includes('email_already_in_use')) {
+            formLis[1].removeAttribute('hidden');
+            formUl.removeAttribute('hidden');
+        } else {
+            formLis.forEach((el) => {
+                el.setAttribute('hidden', '');
+            });
+            formUl.setAttribute('hidden', '');
+        }
+    };
+
+    password.onkeyup = (e) => {
+        if (!e.target.value || e.target.value === null) {
+            passwordValidation.setAttribute('hidden', '');
+        } else {
+            passwordValidation.removeAttribute('hidden');
+        }
+    };
+    passwordValidation.onkeyup = () => {
+        if (passwordValidation.value !== password.value) {
+            if (!issues.includes('mismatching_passwords')) {
+                issues.push('mismatching_passwords');
+            }
+        } else {
+            issues.splice(issues.indexOf('mismatching_passwords'), 1);
+        }
+    };
+    submit.onclick = (e) => {
+        if (password.value !== passwordValidation.value) {
+            e.preventDefault();
+            return console.error('Passwords mismatch');
+        }
+        for (let i = 0; i < form.children.length; i++) {
+            console.log(form.children[i].value);
+        }
+    };
+</script>
