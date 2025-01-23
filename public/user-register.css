@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+:root {
+    --blue: rgba(129, 158, 255, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Funnel Display';
+    color: white;
+}
+
+body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #2b2a35;
+}
+
+#form-wrapper {
+    padding: 2rem;
+    height: 80%;
+    width: 70%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 100;
+}
+a {
+    color: var(--blue);
+}
+form {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+}
+ul {
+    font-size: 14px;
+}
+ul p {
+    color: white;
+}
+ul li {
+    color: rgb(230, 46, 46);
+}
+input {
+    /* margin: 0.2rem 0; */
+    background-color: #3b3a49;
+    padding: 0.5rem;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(237, 234, 255, 0.2);
+    transition: border 0.25s;
+}
+input:focus {
+    outline: none;
+    border: 2px solid rgba(237, 234, 255, 0.5);
+    transition: border 0.25s;
+}
+input:nth-child(1),
+input:nth-child(2) {
+    width: 44.77%;
+}
+input:nth-child(3),
+input:nth-child(4),
+input:nth-child(5) {
+    width: 100%;
+}
+input:nth-child(6) {
+    margin-top: 1rem;
+    transition: border 0.25s;
+}
+input:nth-child(6):hover {
+    cursor: pointer;
+    border: 2px solid rgba(237, 234, 255, 0.5);
+    transition: border 0.25s;
+}

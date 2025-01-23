@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../public/user-register.css" />
+    </head>
+    <body>
+        <div id="form-wrapper">
+            <h1>Créer un compte</h1>
+            <p>Vous possédez déjà un compte ? <a href="/users/login">Connectez-vous</a></p>
+            <form action="/users/register" method="post">
+                <input id="firstname" name="firstname" type="text" placeholder="Prénom" required />
+                <input id="lastname" name="lastname" type="text" placeholder="Nom" required />
+                <input id="email" name="email" type="text" placeholder="Adresse E-mail" required />
+                <input id="password" name="password" type="password" placeholder="Mot de passe" required />
+                <input id="password-validation" name="password-validation" placeholder="Mot de passe (vérification)" type="password" hidden required />
+                <input type="submit" id="register-submit" />
+            </form>
+            <ul hidden>
+                <p>Problèmes :</p>
+                <li hidden>Mots de passes différents</li>
+                <li hidden>Adresse E-mail invalide</li>
+                <li hidden>Cette adresse e-mail est déjà utilisée</li>
+                <li hidden>Votre mot de passe doit contenir au moins une majuscule, un chiffre et un symbole</li>
+                <li hidden>Ce mot de passe est déjà utilisé par quelqu'un</li>
+                <li hidden>
+                    Votre mot de passe doit contenir au moins une majuscule, un chiffre, un symbole, une unité de mesure, une monnaie, un verbe à l'infinitif et le titre d'une des
+                    chansons de Pitbull
+                </li>
+            </ul>
+        </div>
+        <script>
+            const form = document.getElementsByTagName('form')[0];
+            const passwordValidation = document.getElementById('password-validation');
+            const password = document.getElementById('password');
+            const submit = document.getElementById('register-submit');
+            const formUl = document.getElementsByTagName('ul')[0];
+            const formLis = document.querySelectorAll('ul li');
+
+            let issues = [];
+
+            document.body.onkeyup = (e) => {
+                console.log(issues);
+                if (issues.includes('mismatching_passwords')) {
+                    formLis[0].removeAttribute('hidden');
+                    formUl.removeAttribute('hidden');
+                } else if (issues.includes('email_already_in_use')) {
+                    formLis[1].removeAttribute('hidden');
+                    formUl.removeAttribute('hidden');
+                } else {
+                    formLis.forEach((el) => {
+                        el.setAttribute('hidden', '');
+                    });
+                    formUl.setAttribute('hidden', '');
+                }
+            };
+
+            password.onkeyup = (e) => {
+                if (!e.target.value || e.target.value === null) {
+                    passwordValidation.setAttribute('hidden', '');
+                } else {
+                    passwordValidation.removeAttribute('hidden');
+                }
+            };
+            passwordValidation.onkeyup = () => {
+                if (passwordValidation.value !== password.value) {
+                    if (!issues.includes('mismatching_passwords')) {
+                        issues.push('mismatching_passwords');
+                    }
+                } else {
+                    issues.splice(issues.indexOf('mismatching_passwords'), 1);
+                }
+            };
+            submit.onclick = (e) => {
+                if (password.value !== passwordValidation.value) {
+                    e.preventDefault();
+                    return console.error('Passwords mismatch');
+                }
+                for (let i = 0; i < form.children.length; i++) {
+                    console.log(form.children[i].value);
+                }
+            };
+        </script>
+    </body>
+</html>
